@@ -1,0 +1,4 @@
+.app-shell { font-family: Arial, sans-serif; padding: 16px; }
+.row { display:flex; gap:24px; align-items:flex-start; }
+.col { flex:1; }
+button { padding:8px 12px; border-radius:6px; cursor:pointer; }
