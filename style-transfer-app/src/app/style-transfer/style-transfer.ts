@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -19,11 +19,13 @@ export class StyleTransferComponent implements OnInit {
   styleUrl: string | null = null;
   resultUrl: string | null = null;
 
+  // 👇 reference to result section
+  @ViewChild('resultSection') resultSection!: ElementRef;
+
   ngOnInit(): void {
     this.loadModel();
   }
 
-  // Dynamically import Magenta image package and initialize the model
   async loadModel() {
     try {
       this.loadingModel = true;
@@ -59,7 +61,6 @@ export class StyleTransferComponent implements OnInit {
     this.styleImgEl.src = this.styleUrl;
   }
 
-  // Wait for an image element to finish loading
   private waitForImage(img: HTMLImageElement) {
     return new Promise<void>((resolve) => {
       if (img.complete && img.naturalWidth !== 0) resolve();
@@ -68,7 +69,6 @@ export class StyleTransferComponent implements OnInit {
     });
   }
 
-  // Optional: Resize content image to a max dimension (improves speed)
   private async makeSizedImage(img: HTMLImageElement, maxDim = 900): Promise<HTMLImageElement> {
     await this.waitForImage(img);
     const w = img.naturalWidth, h = img.naturalHeight;
@@ -89,22 +89,31 @@ export class StyleTransferComponent implements OnInit {
   async applyStyle() {
     if (!this.model || !this.contentImgEl || !this.styleImgEl) return;
     this.processing = true;
-    try {
-      // ensure both images are loaded
-      await Promise.all([this.waitForImage(this.contentImgEl), this.waitForImage(this.styleImgEl)]);
 
-      // (recommended) resize content to keep inference fast on weaker machines
+    try {
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      await Promise.all([
+        this.waitForImage(this.contentImgEl),
+        this.waitForImage(this.styleImgEl)
+      ]);
+
       const contentForModel = await this.makeSizedImage(this.contentImgEl, 900);
 
-      // stylize -> returns an ImageData object
       const imageData: ImageData = await this.model.stylize(contentForModel, this.styleImgEl);
 
-      // put result into a canvas and get data URL
       const outCanvas = document.createElement('canvas');
       outCanvas.width = imageData.width;
       outCanvas.height = imageData.height;
       outCanvas.getContext('2d')!.putImageData(imageData, 0, 0);
       this.resultUrl = outCanvas.toDataURL('image/png');
+
+      // 👇 focus the result container after rendering
+      setTimeout(() => {
+        if (this.resultSection) {
+          this.resultSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     } catch (err) {
       console.error(err);
       alert('Stylization failed — see console for details.');
@@ -121,4 +130,3 @@ export class StyleTransferComponent implements OnInit {
     a.click();
   }
 }
-

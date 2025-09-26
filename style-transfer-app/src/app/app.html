@@ -1,4 +1,102 @@
-<app-style-transfer></app-style-transfer>
+<!-- <app-style-transfer></app-style-transfer> -->
+<!-- App Shell -->
+<div class="min-h-screen flex flex-col bg-gradient-to-b from-white to-purple-50">
+
+  <!-- Header -->
+  <header class="w-full bg-purple-700 text-white py-4 shadow-lg">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-purple-700 font-bold">
+          N
+        </div>
+        <h1 class="text-2xl font-bold tracking-wide">NeuroArt</h1>
+      </div>
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="#" class="hover:text-purple-200 transition">Home</a>
+        <a href="#" class="hover:text-purple-200 transition">Demo</a>
+        <a href="#" class="hover:text-purple-200 transition">About</a>
+        <a href="#" class="hover:text-purple-200 transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1">
+
+    <!-- Hero / About Section -->
+    <section class="text-center py-16 px-6 bg-gradient-to-r from-purple-50 to-purple-100">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-purple-800 mb-6">
+          Transform Your Photos Into Art
+        </h2>
+        <p class="text-gray-700 text-lg md:text-xl mb-4">
+          This website uses <span class="font-semibold text-purple-700">Neural Style Transfer</span> — 
+          an AI technique that combines the content of one image with the artistic style of another.
+        </p>
+        <p class="text-gray-600 text-md">
+          For example, you can take a photo of your city and make it look like it was painted by Van Gogh. 
+          Everything runs entirely in your browser with TensorFlow.js — no servers, no uploads. 
+        </p>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="py-16 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h3 class="text-3xl font-bold text-center text-purple-800 mb-10">How It Works</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Content Image -->
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-purple-200 transition">
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">Content Image</h4>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Paris_as_seen_from_the_Tour_Saint-Jacques_2011_03.jpg/320px-Paris_as_seen_from_the_Tour_Saint-Jacques_2011_03.jpg" 
+                 class="rounded-lg shadow-md mx-auto mb-4"/>
+            <p class="text-gray-500 text-sm">The original photo whose structure is preserved.</p>
+          </div>
+
+          <!-- Style Image -->
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-purple-200 transition">
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">Style Image</h4>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/320px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+                 class="rounded-lg shadow-md mx-auto mb-4"/>
+            <p class="text-gray-500 text-sm">The artistic style you want to transfer.</p>
+          </div>
+
+          <!-- Result Image -->
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-purple-200 transition">
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">Result Image</h4>
+            <img src="https://magenta.tensorflow.org/assets/img/style-transfer.gif" 
+                 class="rounded-lg shadow-md mx-auto mb-4"/>
+            <p class="text-gray-500 text-sm">The AI-generated result that blends both images.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Style Transfer Component -->
+    <section class="py-6 px-6 bg-gradient-to-b from-purple-50 to-purple-100">
+      <div class="max-w-6xl mx-auto">
+        <h3 class="text-3xl font-bold text-center text-purple-800 mt-10 mb-10">Try It Yourself</h3>
+        <app-style-transfer></app-style-transfer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-purple-700 text-white py-6 ">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm">&copy; 2025 NeuroArt. All rights reserved.</p>
+      <div class="flex gap-4 text-sm">
+        <a href="#" class="hover:text-purple-200 transition">Privacy</a>
+        <a href="#" class="hover:text-purple-200 transition">Terms</a>
+        <a href="#" class="hover:text-purple-200 transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
 
 
 
