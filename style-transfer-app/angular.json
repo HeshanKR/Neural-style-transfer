@@ -18,6 +18,13 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "buffer",
+              "safe-buffer",
+              "@magenta/image",
+              "string_decoder",
+              "node-fetch"
+            ],
             "assets": [
               {
                 "glob": "**/*",
